@@ -12,6 +12,10 @@
     "mutator" : {
         "mutation_factor": 0.01,
         "hypermutation_factor": 100
+    },
+
+    "crossoverer": {
+        "crossover_probability": 0.8
     }
     
 }
