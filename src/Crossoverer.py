@@ -1,11 +1,12 @@
 import numpy as np
 from random import uniform
 
+
 class Crossoverer:
-    
+
     def __init__(self, config):
         self.crossover_probability = config['crossover_probability']
-        
+
     def crossover(self, target: np.array, donor: np.array):
         trial_vector = []
 
@@ -15,6 +16,5 @@ class Crossoverer:
                 trial_vector.append(donor[i])
             else:
                 trial_vector.append(target[i])
-        
+
         return np.array(trial_vector)
-    
