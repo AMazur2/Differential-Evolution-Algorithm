@@ -1,18 +1,15 @@
 import numpy as np
 import random
-import pandas as pd
 import json
 from opfunu.cec.cec2013.unconstraint import Model
-from Mutator import Mutator
-from Generator import Generator
-from Crossoverer import Crossoverer
+from .Mutator import Mutator
+from .Generator import Generator
+from .Crosser import Crosser
 
 
 class Population:
 
     def __init__(self, configFile):
-        config = {}
-
         with open(configFile) as configuration:
             config = json.load(configuration)
 
@@ -21,15 +18,15 @@ class Population:
         self.is_hypermutation_on = config['is_hypermutation_on']
         self.mutator = Mutator(config['mutator'])
         self.generator = Generator(config['generator'])
-        self.crossoverer = Crossoverer(config['crossoverer'])
+        self.crosser = Crosser(config['crossoverer'])
         self.population = []
         self.results = []
         self.current_score = 0
-
-    def initialize(self):
-        self.population = self.generator.generate_population()
+        self.fitness_fun = Model(config['dimension'])
 
     def run(self):
+        self.initialize()
+
         for epoch in range(self.epochs):
             next_population = []
 
@@ -41,7 +38,7 @@ class Population:
                     self.mutator.hypermutate()
                 donor = self.mutator.mutate(random_1, random_2, random_3)
 
-                trial_vector = self.crossoverer.crossover(individual, donor)
+                trial_vector = self.crosser.crossover(individual, donor)
 
                 if self.evaluate(trial_vector) <= self.evaluate(individual):
                     next_population.append(trial_vector)
@@ -51,6 +48,9 @@ class Population:
             self.population = next_population
             self.observeEpoch()
 
+    def initialize(self):
+        self.population = self.generator.generate_population()
+
     def random_population_index(self):
         return random.randint(0, len(self.population) - 1)
 
@@ -58,7 +58,7 @@ class Population:
         generated_indices = []
         for i in range(3):
             new_index = self.random_population_index()
-            while (generated_indices + omitted).count(new_index):
+            while generated_indices.count(new_index) or omitted == new_index:
                 new_index = self.random_population_index()
             generated_indices.append(new_index)
 
@@ -79,7 +79,7 @@ class Population:
         return True
 
     def evaluate(self, x):
-        return 1
+        return eval("self.fitness_fun.F" + str(self.function) + "(x)")
 
     def observeEpoch(self):
         epoch_results = []
@@ -98,4 +98,3 @@ class Population:
 
     def getSimulationResults(self):
         return self.results
-

@@ -1,5 +1,6 @@
 import numpy
 
+
 class Mutator:
 
     def __init__(self, config):
