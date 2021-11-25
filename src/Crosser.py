@@ -2,7 +2,7 @@ import numpy as np
 from random import uniform
 
 
-class Crossoverer:
+class Crosser:
 
     def __init__(self, config):
         self.crossover_probability = config['crossover_probability']
