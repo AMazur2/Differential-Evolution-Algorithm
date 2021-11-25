@@ -10,7 +10,7 @@ class Crosser:
     def crossover(self, target: np.array, donor: np.array):
         trial_vector = []
 
-        for i in range(target.len):
+        for i in range(len(target)):
             random = uniform(0, 1)
             if random <= self.crossover_probability:
                 trial_vector.append(donor[i])
