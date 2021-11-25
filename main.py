@@ -12,7 +12,7 @@ def main():
         for file in f:
             print(file)
             population = Population(directory + "/conf/" + file)
-            observer = Observer()
+            observer = Observer(directory + "/conf/" + file)
             population.run()
             results = population.getSimulationResults()
             df = pd.DataFrame(data=np.array(results), columns=["min", "max", "average"])
