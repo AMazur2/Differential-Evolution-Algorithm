@@ -69,9 +69,9 @@ class Population:
         return x0, x1, x2
 
     def should_hypermutate(self):
-        if not self.is_hypermutation_on:
+        if not self.is_hypermutation_on or len(self.results) < 6:
             return False
-        first_result_to_consider_index = -6 if len(self.results) >= 6 else 0
+        first_result_to_consider_index = -6
         previous = self.results[first_result_to_consider_index][1]
         for i in range(first_result_to_consider_index + 1, len(self.results)):
             if self.results[i][1] > previous:
