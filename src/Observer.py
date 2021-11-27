@@ -29,5 +29,5 @@ class Observer:
         plt.title("Function:" + str(self.fun) + " Dimension:" + str(self.dim) + " Hyper: " + self.isOn)
 
         name = ("e" + str(self.epochs) + "-p" + str(self.populationSize) + "-f" + str(self.fun) + "-d" + str(self.dim) +
-                "-o:" + self.isOn + "-m" + str(self.mutationF) + "-h" + str(self.hyper) + ".png")
+                "-o" + self.isOn + "-m" + str(self.mutationF) + "-h" + str(self.hyper) + ".png")
         plt.savefig(name)
