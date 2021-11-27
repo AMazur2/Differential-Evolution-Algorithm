@@ -1,14 +1,14 @@
 {
-    "epochs" : 10,
-    "fun_number" : 1,
-    "dimension" : 10,
+    "epochs" : 100,
+    "fun_number" : 2,
+    "dimension" : 30,
     "is_hypermutation_on" : "True",
 
     "generator" : {
-        "size" : 10,
-        "dimension" : 10,
-        "min" : -10.0,
-        "max" : 10.0
+        "size" : 300,
+        "dimension" : 30,
+        "min" : -20.0,
+        "max" : 20.0
     },
     
     "mutator" : {
