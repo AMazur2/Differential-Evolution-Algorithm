@@ -12,8 +12,8 @@
     },
 
     "mutator" : {
-        "mutation_factor": 0.005,
-        "hypermutation_factor": 100
+        "mutation_factor": 0.001,
+        "hypermutation_factor": 60
     },
 
     "crossoverer": {

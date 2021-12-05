@@ -2,17 +2,17 @@
     "epochs" : 300,
     "fun_number" : 1,
     "dimension" : 10,
-    "is_hypermutation_on" : "True",
+    "is_hypermutation_on" : "False",
 
     "generator" : {
-        "size" : 100,
+        "size" : 300,
         "dimension" : 10,
         "min" : -20.0,
         "max" : 20.0
     },
 
     "mutator" : {
-        "mutation_factor": 0.005,
+        "mutation_factor": 0.001,
         "hypermutation_factor": 100
     },
 

@@ -12,7 +12,7 @@
     },
 
     "mutator" : {
-        "mutation_factor": 0.005,
+        "mutation_factor": 0.009,
         "hypermutation_factor": 100
     },
 
