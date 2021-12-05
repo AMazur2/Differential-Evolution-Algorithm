@@ -34,7 +34,6 @@ def main():
                 epoch_results = [np.min(dfMin[j]), np.max(dfMax[j]), np.average(dfAvg[j])]
                 results.append(epoch_results)
             df = pd.DataFrame(data=np.array(results), columns=["min", "max", "average"])
-            print(df.shape)
             observer.plot_chart(df)
 
 

@@ -31,3 +31,6 @@ class Observer:
         name = ("e" + str(self.epochs) + "-p" + str(self.populationSize) + "-f" + str(self.fun) + "-d" + str(self.dim) +
                 "-o:" + self.isOn + "-m" + str(self.mutationF) + "-h" + str(self.hyper) + ".png")
         plt.savefig(name)
+        plt.clf()
+        plt.cla()
+        plt.close()
