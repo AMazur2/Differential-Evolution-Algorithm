@@ -36,7 +36,6 @@ def main():
             df = pd.DataFrame(data=np.array(results), columns=["min", "max", "average"])
             print(df.shape)
             observer.plot_chart(df)
-            df = None
 
 
 if __name__ == '__main__':
