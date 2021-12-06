@@ -1,23 +1,23 @@
 {
-    "epochs" : 300,
-    "fun_number" : 1,
+  "epochs" : 150,
+  "fun_number" : 28,
+  "dimension" : 10,
+  "is_hypermutation_on" : "False",
+
+  "generator" : {
+    "size" : 100,
     "dimension" : 10,
-    "is_hypermutation_on" : "False",
+    "min" : -20.0,
+    "max" : 20.0
+  },
 
-    "generator" : {
-        "size" : 100,
-        "dimension" : 10,
-        "min" : -20.0,
-        "max" : 20.0
-    },
+  "mutator" : {
+    "mutation_factor": 0.001,
+    "hypermutation_factor": 220
+  },
 
-    "mutator" : {
-        "mutation_factor": 0.001,
-        "hypermutation_factor": 200
-    },
-
-    "crossoverer": {
-        "crossover_probability": 0.5
-    }
+  "crossoverer": {
+    "crossover_probability": 0.5
+  }
 
 }
