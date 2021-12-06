@@ -21,6 +21,9 @@ class Population:
         self.crosser = Crosser(config['crossoverer'])
         self.population = []
         self.results = []
+        self.resultsMin = []
+        self.resultsMax = []
+        self.resultsAvg = []
         self.current_score = 0
         self.fitness_fun = Model(config['dimension'])
 
@@ -90,6 +93,10 @@ class Population:
 
         df = np.array(individual_results)
 
+        self.resultsMin.append(np.min(df))
+        self.resultsMax.append(np.max(df))
+        self.resultsAvg.append(np.average(df))
+
         epoch_results.append(np.min(df))
         epoch_results.append(np.max(df))
         epoch_results.append(np.average(df))
@@ -97,4 +104,4 @@ class Population:
         self.results.append(np.array(epoch_results))
 
     def getSimulationResults(self):
-        return self.results
+        return self.resultsMin, self.resultsAvg, self.resultsMax

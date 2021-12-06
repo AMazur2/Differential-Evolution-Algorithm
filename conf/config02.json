@@ -1,0 +1,23 @@
+{
+    "epochs" : 300,
+    "fun_number" : 1,
+    "dimension" : 10,
+    "is_hypermutation_on" : "True",
+
+    "generator" : {
+        "size" : 100,
+        "dimension" : 10,
+        "min" : -20.0,
+        "max" : 20.0
+    },
+
+    "mutator" : {
+        "mutation_factor": 0.003,
+        "hypermutation_factor": 100
+    },
+
+    "crossoverer": {
+        "crossover_probability": 0.5
+    }
+
+}

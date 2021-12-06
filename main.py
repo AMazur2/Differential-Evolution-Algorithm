@@ -6,15 +6,33 @@ import os
 
 
 def main():
+    runs = 12
     directory = os.getcwd()
-    for r, d, f in os.walk(directory + "/conf"):
+    conf_dir = directory + "/conf"
+    for r, d, f in os.walk(conf_dir):
         f.sort()
         for file in f:
+            resultsMin = []
+            resultsMax = []
+            resultsAvg = []
+            results = []
             print(file)
-            population = Population(directory + "/conf/" + file)
-            observer = Observer(directory + "/conf/" + file)
-            population.run()
-            results = population.getSimulationResults()
+            observer = Observer(conf_dir + "/" + file)
+            for i in range(runs):
+                population = Population(conf_dir + "/" + file)
+                population.run()
+                minimal, avg, maximal = population.getSimulationResults()
+                resultsMax.append(maximal)
+                resultsMin.append(minimal)
+                resultsAvg.append(avg)
+
+            dfAvg = pd.DataFrame(data=np.array(resultsAvg))
+            dfMax = pd.DataFrame(data=np.array(resultsMax))
+            dfMin = pd.DataFrame(data=np.array(resultsMin))
+            _, columns = dfAvg.shape
+            for j in range(columns):
+                epoch_results = [np.min(dfMin[j]), np.max(dfMax[j]), np.average(dfAvg[j])]
+                results.append(epoch_results)
             df = pd.DataFrame(data=np.array(results), columns=["min", "max", "average"])
             observer.plot_chart(df)
 

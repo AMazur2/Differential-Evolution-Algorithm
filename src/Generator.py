@@ -1,6 +1,7 @@
 import numpy as np
 from random import uniform
 
+
 class Generator:
     
     def __init__(self, config):
