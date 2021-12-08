@@ -1,5 +1,6 @@
 from src.Population import Population
 from src.Observer import Observer
+from src.ObserverECDF import ObserverECDF
 import numpy as np
 import pandas as pd
 import os
@@ -18,6 +19,7 @@ def main():
             results = []
             print(file)
             observer = Observer(conf_dir + "/" + file)
+            observerECDF = ObserverECDF(conf_dir + "/" + file)
             for i in range(runs):
                 population = Population(conf_dir + "/" + file)
                 population.run()
@@ -29,12 +31,15 @@ def main():
             dfAvg = pd.DataFrame(data=np.array(resultsAvg))
             dfMax = pd.DataFrame(data=np.array(resultsMax))
             dfMin = pd.DataFrame(data=np.array(resultsMin))
+
             _, columns = dfAvg.shape
             for j in range(columns):
                 epoch_results = [np.min(dfMin[j]), np.max(dfMax[j]), np.average(dfAvg[j])]
                 results.append(epoch_results)
             df = pd.DataFrame(data=np.array(results), columns=["min", "max", "average"])
             observer.plot_chart(df)
+
+            observerECDF.plot_chart(resultsMin)
 
 
 if __name__ == '__main__':
