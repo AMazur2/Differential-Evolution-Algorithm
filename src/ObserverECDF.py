@@ -10,14 +10,12 @@ class ObserverECDF:
         with open(conf) as configuration:
             config = json.load(configuration)
             self.epochs = config['epochs']
-            self.fun = config['fun_number']
             self.dim = config['dimension']
             mutationConfig = config['mutator']
             self.mutationF = mutationConfig['mutation_factor']
             self.hyper = mutationConfig['hypermutation_factor']
             generatorConfig = config['generator']
             self.populationSize = generatorConfig['size']
-            self.isOn = config['is_hypermutation_on']
 
     def plot_chart(self, all_min_results):
         firstECDF = ECDF(all_min_results[0])
@@ -33,10 +31,9 @@ class ObserverECDF:
 
         plt.xlabel("results")
         plt.ylabel("proportion of function-target pairs")
-        plt.title("Function:" + str(self.fun) + " Dimension:" + str(self.dim) + " Hyper: " + self.isOn)
 
-        name = ("e" + str(self.epochs) + "-p" + str(self.populationSize) + "-f" + str(self.fun) + "-d" + str(self.dim) +
-                "-o" + self.isOn + "-m" + str(self.mutationF) + "-h" + str(self.hyper) + "ECDF.png")
+        name = ("e" + str(self.epochs) + "-p" + str(self.populationSize) + "-d" + str(self.dim) +
+                "-m" + str(self.mutationF) + "-h" + str(self.hyper) + "ECDF.png")
         plt.savefig(name)
         plt.clf()
         plt.cla()

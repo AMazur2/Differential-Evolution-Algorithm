@@ -9,13 +9,13 @@ from .Crosser import Crosser
 
 class Population:
 
-    def __init__(self, configFile):
+    def __init__(self, configFile, function, is_on):
         with open(configFile) as configuration:
             config = json.load(configuration)
 
         self.epochs = config['epochs']
-        self.function = config['fun_number']
-        self.is_hypermutation_on = config['is_hypermutation_on']
+        self.function = function
+        self.is_hypermutation_on = is_on
         self.mutator = Mutator(config['mutator'])
         self.generator = Generator(config['generator'])
         self.crosser = Crosser(config['crossoverer'])
