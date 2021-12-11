@@ -16,7 +16,7 @@ def main():
             minimal = []
             for option in hypermutation_on:
                 min_values = []
-                for function_nr in range(1, 29):
+                for function_nr in range(1, 2):
                     population = Population(conf_dir + "/" + file, function_nr, option)
                     for run in range(runs):
                         print(file + "\t" + str(option) + "\t" + str(function_nr) + "\t" + str(run))
