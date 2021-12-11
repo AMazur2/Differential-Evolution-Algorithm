@@ -1,6 +1,7 @@
 {
     "epochs" : 150,
     "dimension" : 10,
+    "output_resolution" : 100,
 
     "generator" : {
         "size" : 100,
