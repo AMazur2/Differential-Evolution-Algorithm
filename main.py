@@ -59,17 +59,14 @@ def main():
     for r, d, f in os.walk(conf_dir):
         f.sort()
         for file in f:
-            print(file)
             observerECDF = ObserverECDF(conf_dir + "/" + file)
             minimal = []
             for option in hypermutation_on:
-                print("\t" + str(option))
                 min_values = []
                 for function_nr in range(1, 29):
-                    print("\t\t" + str(function_nr))
                     population = Population(conf_dir + "/" + file, function_nr, option)
                     for run in range(runs):
-                        print("\t\t\t" + str(run))
+                        print(file + "\t" + str(option) + "\t" + str(function_nr) + "\t" + str(run))
                         population.run()
                         mins, _, _ = population.getSimulationResults()
                         min_values.append(mins)
