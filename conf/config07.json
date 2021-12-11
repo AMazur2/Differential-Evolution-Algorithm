@@ -1,8 +1,7 @@
 {
-    "epochs" : 300,
-    "fun_number" : 1,
+    "epochs" : 150,
     "dimension" : 10,
-    "is_hypermutation_on" : "True",
+    "output_resolution" : 100,
 
     "generator" : {
         "size" : 100,
@@ -12,8 +11,8 @@
     },
 
     "mutator" : {
-        "mutation_factor": 0.008,
-        "hypermutation_factor": 100
+        "mutation_factor": 0.001,
+        "hypermutation_factor": 140
     },
 
     "crossoverer": {
