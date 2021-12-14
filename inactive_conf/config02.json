@@ -1,17 +1,17 @@
 {
     "epochs" : 150,
     "dimension" : 10,
-    "output_resolution" : 100,
+    "output_resolution" : 600,
 
     "generator" : {
-        "size" : 300,
+        "size" : 100,
         "dimension" : 10,
         "min" : -20.0,
         "max" : 20.0
     },
 
     "mutator" : {
-        "mutation_factor": 0.001,
+        "mutation_factor": 0.005,
         "hypermutation_factor": 100
     },
 
