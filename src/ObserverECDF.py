@@ -25,29 +25,32 @@ class ObserverECDF:
             x_min = float('inf')
             x_max = float('-inf')
             ECDFs = []
-            for i in range(1, len(hypermutation_option_results)):
+            for i in range(0, len(hypermutation_option_results)):
                 current_ECDF = ECDF(hypermutation_option_results[i])
-                current_x = current_ECDF.x
+                ECDFs.append(current_ECDF)
 
-                first_x = current_x[1]
+                first_x = current_ECDF.x[1]
                 if first_x < x_min and first_x != float('-inf'):
                     x_min = first_x
 
-                last_x = current_x[len(current_x) - 1]
+                max_sensible = len(current_ECDF.x) - 1
+                last_x = current_ECDF.x[max_sensible]
+
+                while current_ECDF(last_x) > 0.9:
+                    max_sensible -= 1
+                    last_x = current_ECDF.x[max_sensible]
+
                 if last_x > x_max and last_x != float('inf'):
                     x_max = last_x
-                ECDFs.append(current_ECDF)
 
             x = np.arange(x_min, x_max, (x_max - x_min)/self.resolution)
-            y = np.zeros(self.resolution)
+            y = np.zeros(len(x))
 
             for current_ECDF in ECDFs:
-                i = 0
-                for current_x in x:
-                    y[i] += current_ECDF(current_x)
-                    i += 1
+                for i in range(0, len(x)):
+                    y[i] += current_ECDF(x[i])
 
-            y /= len(hypermutation_option_results)
+            y /= len(ECDFs)
 
             plt.step(x, y, label=("Hypermutation on" if option_counter == 0 else "Hypermutation off")) #
             option_counter += 1
