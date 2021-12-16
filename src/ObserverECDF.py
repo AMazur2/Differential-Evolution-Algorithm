@@ -31,11 +31,10 @@ class ObserverECDF:
                 current_ECDF = ECDF(hypermutation_option_results[i])
                 ECDFs.append(current_ECDF)
 
-                first_x = current_ECDF.x[1]
-                span = current_ECDF.x[-1] - first_x
+                span = current_ECDF.x[-1]
 
                 for j in range(0, self.epochs):
-                    y[j] += current_ECDF(float(j) / self.epochs * span + first_x)
+                    y[j] += current_ECDF(float(j) / self.epochs * span)
 
             y /= len(hypermutation_option_results)
 
