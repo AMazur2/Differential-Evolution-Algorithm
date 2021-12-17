@@ -1,0 +1,22 @@
+{
+    "epochs" : 150,
+    "dimension" : 30,
+    "output_resolution" : 600,
+
+    "generator" : {
+        "size" : 500,
+        "dimension" : 30,
+        "min" : -20.0,
+        "max" : 20.0
+    },
+
+    "mutator" : {
+        "mutation_factor": 0.001,
+        "hypermutation_factor": 100
+    },
+
+    "crossoverer": {
+        "crossover_probability": 0.5
+    }
+
+}
